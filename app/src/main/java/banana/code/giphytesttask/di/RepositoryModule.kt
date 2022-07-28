@@ -6,15 +6,13 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
-@InstallIn(SingletonComponent::class)
 @Module
+@InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
-    @Singleton
     @Provides
-    fun provideGifRepository(gifRemoteInterface: GifRemoteInterface): GifRepository{
+    fun provideGifRepository(gifRemoteInterface: GifRemoteInterface): GifRepository {
         return GifRepository(gifRemoteInterface)
     }
 
