@@ -9,5 +9,5 @@
         android:id="@+id/mainFragment"
         android:name="banana.code.giphytesttask.ui.main.GifsFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_gifs" />
 </navigation>
