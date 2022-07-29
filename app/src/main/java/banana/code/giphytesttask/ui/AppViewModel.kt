@@ -1,10 +1,10 @@
 package banana.code.giphytesttask.ui
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import banana.code.giphytesttask.core.db.dao.GifDao
 import banana.code.giphytesttask.core.model.Gif
 import banana.code.giphytesttask.core.model.RetrofitResponse
 import banana.code.giphytesttask.core.repository.GifRepository
@@ -12,12 +12,12 @@ import banana.code.giphytesttask.ui.main.ListMode
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.http.Query
 import javax.inject.Inject
 
 @HiltViewModel
 class AppViewModel @Inject constructor(
-    var gifRepository: GifRepository
+    var gifRepository: GifRepository,
+    var gifDao: GifDao
 ): ViewModel()  {
 
     private val _gifsList = MutableLiveData<List<Gif>>()
