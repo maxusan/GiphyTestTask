@@ -1,5 +1,6 @@
 package banana.code.giphytesttask.ui
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -57,7 +58,9 @@ class AppViewModel @Inject constructor(
                 offset = getOffsetValue() ?: 0
             )
             when(response){
-                is RetrofitResponse.Error -> {}
+                is RetrofitResponse.Error -> {
+                    Log.e("logs", "error")
+                }
                 is RetrofitResponse.Success -> {
                     _gifsList.postValue(response.gifsList)
                 }
