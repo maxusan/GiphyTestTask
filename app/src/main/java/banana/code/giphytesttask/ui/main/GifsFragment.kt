@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import banana.code.giphytesttask.core.model.Gif
 import banana.code.giphytesttask.databinding.FragmentGifsBinding
 import banana.code.giphytesttask.ui.AppViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,7 +18,14 @@ import dagger.hilt.android.AndroidEntryPoint
 class GifsFragment : Fragment() {
 
     private lateinit var binding: FragmentGifsBinding
-    private val adapter: GifsListAdapter by lazy { GifsListAdapter() }
+    private val adapter: GifsListAdapter by lazy { GifsListAdapter(){ gif: Gif ->
+        handleGifClick(gif)
+    } }
+
+    private fun handleGifClick(gif: Gif) {
+        findNavController().navigate(GifsFragmentDirections.actionMainFragmentToGifFullscreenFragment(gif))
+    }
+
     private val viewModel: AppViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -29,10 +38,11 @@ class GifsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.gifsList.adapter = adapter
-        binding.switchListModeButton.setOnClickListener {
-            viewModel.switchListMode()
-        }
+        setupViews()
+        observeEvents()
+    }
+
+    private fun observeEvents() {
         viewModel.gifsList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
@@ -40,6 +50,26 @@ class GifsFragment : Fragment() {
             switchListLayoutManager(it)
             binding.listMode = it
         }
+    }
+
+    private fun setupViews() {
+        binding.gifsList.adapter = adapter
+        binding.switchListModeButton.setOnClickListener {
+            viewModel.switchListMode()
+        }
+        binding.searchEt.setOnQueryTextListener(object: androidx.appcompat.widget.SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return query?.let {
+                    viewModel.setQuery(
+                        query = it
+                    )
+                    it.isNotEmpty()
+                } ?: false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean = false
+
+        })
     }
 
     private fun switchListLayoutManager(listMode: ListMode) {

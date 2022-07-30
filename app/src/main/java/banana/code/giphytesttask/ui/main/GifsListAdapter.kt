@@ -11,13 +11,19 @@ import banana.code.giphytesttask.core.model.Gif
 import banana.code.giphytesttask.databinding.ListItemGridGifBinding
 
 class GifsListAdapter(
-    //val listType: ListMode
+    val gifClick: (Gif) -> Unit
 ): ListAdapter<Gif, RecyclerView.ViewHolder>(GifCallback()) {
 
 
     inner class GridGifHolder(private val binding: ListItemGridGifBinding): RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.root.setOnClickListener {
+                gifClick(currentList[adapterPosition])
+            }
+        }
+
         fun bindGif(gif: Gif?) {
-            binding.gifPreview.setImageResource(R.drawable.ic_launcher_foreground)
+            binding.gif = gif
         }
 
     }

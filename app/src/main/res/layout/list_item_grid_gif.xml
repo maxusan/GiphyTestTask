@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="gif"
+            type="banana.code.giphytesttask.core.model.Gif" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,6 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            setGifImage="@{gif}"
             tools:src="@tools:sample/avatars" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

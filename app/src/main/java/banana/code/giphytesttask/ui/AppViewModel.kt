@@ -23,6 +23,23 @@ class AppViewModel @Inject constructor(
     private val _gifsList = MutableLiveData<List<Gif>>()
     val gifsList: LiveData<List<Gif>> = _gifsList
 
+    private val _query = MutableLiveData<String>()
+    val query: LiveData<String> = _query
+    fun getQueryValue(): String? = query.value
+    fun setQuery(query: String){
+        if(getQueryValue() == query) return
+        _query.postValue(query)
+        resetOffset()
+        getGifsByQuery(query)
+    }
+
+    private val _offsetValue = MutableLiveData<Int>(0)
+    val offsetValue: LiveData<Int> = _offsetValue
+    private fun getOffsetValue(): Int? = offsetValue.value
+    fun resetOffset(){
+        _offsetValue.postValue(0)
+    }
+
     private val _listMode = MutableLiveData(ListMode.GRID)
     val listMode: LiveData<ListMode> = _listMode
     fun switchListMode(){
@@ -33,19 +50,16 @@ class AppViewModel @Inject constructor(
         }
     }
 
-    fun getGifsByQuery(query: String, offset: Int){
+    fun getGifsByQuery(query: String){
         viewModelScope.launch(Dispatchers.IO){
             val response = gifRepository.getGifsFromApi(
-                query = "dogs",
-                offset = 0
+                query = query,
+                offset = getOffsetValue() ?: 0
             )
             when(response){
                 is RetrofitResponse.Error -> {}
                 is RetrofitResponse.Success -> {
                     _gifsList.postValue(response.gifsList)
-//                    response.gifsList.forEach {
-//                        Log.e("logs", it.toString())
-//                    }
                 }
             }
         }

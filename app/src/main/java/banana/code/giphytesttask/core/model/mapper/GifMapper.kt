@@ -14,7 +14,7 @@ object GifMapper {
         return Gif(
             id = data.id,
             title = data.title,
-            link = data.url,
+            link = data.images.original.url,
         )
     }
 

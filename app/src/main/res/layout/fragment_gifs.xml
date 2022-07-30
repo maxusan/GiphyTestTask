@@ -17,6 +17,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".ui.main.GifsFragment"
+        android:background="@color/black"
         android:padding="@dimen/screen_base_padding">
 
         <androidx.appcompat.widget.LinearLayoutCompat

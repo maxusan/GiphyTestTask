@@ -9,5 +9,18 @@
         android:id="@+id/mainFragment"
         android:name="banana.code.giphytesttask.ui.main.GifsFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_gifs" />
+        tools:layout="@layout/fragment_gifs" >
+        <action
+            android:id="@+id/action_mainFragment_to_gifFullscreenFragment"
+            app:destination="@id/gifFullscreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gifFullscreenFragment"
+        android:name="banana.code.giphytesttask.ui.details.GifFullscreenFragment"
+        android:label="GifFullscreenFragment"
+        tools:layout="@layout/fragment_gif_fullscreen">
+        <argument
+            android:name="gif"
+            app:argType="banana.code.giphytesttask.core.model.Gif" />
+    </fragment>
 </navigation>
