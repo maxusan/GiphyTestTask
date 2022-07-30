@@ -1,10 +1,10 @@
 package banana.code.giphytesttask.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -49,6 +49,7 @@ class GifsFragment : Fragment() {
     private fun observeEvents() {
         viewModel.gifsList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+            binding.paginationLayout.isVisible = !it.isEmpty()
         }
         viewModel.listMode.observe(viewLifecycleOwner) {
             switchListLayoutManager(it)

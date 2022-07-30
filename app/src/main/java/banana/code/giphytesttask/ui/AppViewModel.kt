@@ -71,6 +71,9 @@ class AppViewModel @Inject constructor(
                     _gifsList.postValue(response.gifsList)
                     _paginationValue.postValue(response.pagination)
                 }
+                is RetrofitResponse.ErrorCode -> {
+                    Log.e("logs", "Error code: ${response.errorCode}")
+                }
             }
         }
     }

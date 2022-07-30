@@ -28,16 +28,18 @@
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/search_et"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:theme="@style/AppTheme.SearchView"
+                app:queryHint="Input search query" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/switch_list_mode_button"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:src="@{listMode.equals(ListMode.GRID) ? @drawable/ic_linear_layout_manager : @drawable/ic_grid_layout_manager}" />
+                android:src="@{listMode.equals(ListMode.GRID) ? @drawable/ic_grid_layout_manager :  @drawable/ic_linear_layout_manager}" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -49,8 +51,10 @@
             android:layout_weight="1" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/pagination_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageButton

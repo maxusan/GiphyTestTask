@@ -1,7 +1,6 @@
 package banana.code.giphytesttask.core.repository
 
 import banana.code.giphytesttask.R
-import banana.code.giphytesttask.core.model.Gif
 import banana.code.giphytesttask.core.model.RetrofitResponse
 import banana.code.giphytesttask.core.model.mapper.GifMapper
 import banana.code.giphytesttask.core.remote.GifRemoteInterface
@@ -16,7 +15,11 @@ class GifRepository @Inject constructor(val gifRemoteInterface: GifRemoteInterfa
             limit = Constants.QUERY_LIMIT,
             offset = offset
         ).body()?.let {
-            RetrofitResponse.Success(GifMapper.map(it), it.pagination)
+            if (it.meta.status == 200) {
+                RetrofitResponse.Success(GifMapper.map(it), it.pagination)
+            } else {
+                RetrofitResponse.ErrorCode(it.meta.status)
+            }
         } ?: RetrofitResponse.Error(R.string.error)
     }
 }
