@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
-        <import type="banana.code.giphytesttask.ui.main.ListMode"/>
+        <import type="banana.code.giphytesttask.ui.main.ListMode" />
 
         <variable
             name="listMode"
@@ -36,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:src="@{listMode.equals(ListMode.GRID) ? @drawable/ic_linear_layout_manager : @drawable/ic_grid_layout_manager}"/>
+                android:src="@{listMode.equals(ListMode.GRID) ? @drawable/ic_linear_layout_manager : @drawable/ic_grid_layout_manager}" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -44,8 +45,46 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/gifs_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/previous_page_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/button_state_color_selector"
+                android:src="@drawable/ic_previous_page"
+                android:theme="@style/AppTheme.ImageButton"
+                app:iconGravity="top" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/page_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="8dp"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                tools:text="Page:1" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/next_page_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/button_state_color_selector"
+                android:src="@drawable/ic_next_page"
+                android:theme="@style/AppTheme.ImageButton"
+                app:iconGravity="top" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

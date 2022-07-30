@@ -13,10 +13,10 @@ class GifRepository @Inject constructor(val gifRemoteInterface: GifRemoteInterfa
         return gifRemoteInterface.getAllGifs(
             apiKey = Constants.API_KEY,
             query = query,
-            limit = 25,
+            limit = Constants.QUERY_LIMIT,
             offset = offset
         ).body()?.let {
-            RetrofitResponse.Success(GifMapper.map(it))
+            RetrofitResponse.Success(GifMapper.map(it), it.pagination)
         } ?: RetrofitResponse.Error(R.string.error)
     }
 }
