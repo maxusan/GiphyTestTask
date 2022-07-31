@@ -14,19 +14,19 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="8dp"
+        android:backgroundTint="@color/dark_grey">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_margin="8dp">
 
             <androidx.appcompat.widget.AppCompatImageView
                 setGifImage="@{gif}"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_height="match_parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
@@ -34,10 +34,12 @@
                 tools:text="Gif name"
                 android:textSize="16sp"
                 android:text="@{gif.title}"
-                android:textColor="@color/black"
-                android:layout_marginVertical="@dimen/screen_base_padding"/>
+                android:layout_marginVertical="@dimen/screen_base_padding"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_gravity="bottom|start"/>
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+        </FrameLayout>
 
     </com.google.android.material.card.MaterialCardView>
 </layout>

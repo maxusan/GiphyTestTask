@@ -32,8 +32,13 @@ class GifFullscreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupPager()
+        observeEvents()
+    }
+
+    private fun observeEvents() {
         viewModel.gifsList.observe(viewLifecycleOwner) {
             pagerAdapter.submitList(it)
+            binding.gifsPager.currentItem = args.position
         }
     }
 
