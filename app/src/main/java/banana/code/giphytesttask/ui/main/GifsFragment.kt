@@ -22,12 +22,12 @@ import dagger.hilt.android.AndroidEntryPoint
 class GifsFragment : Fragment() {
 
     private lateinit var binding: FragmentGifsBinding
-    private val adapter: GifsListAdapter by lazy { GifsListAdapter(){ gif: Gif ->
-        handleGifClick(gif)
+    private val adapter: GifsListAdapter by lazy { GifsListAdapter(){ position: Int ->
+        handleGifClick(position)
     } }
 
-    private fun handleGifClick(gif: Gif) {
-        findNavController().navigate(GifsFragmentDirections.actionMainFragmentToGifFullscreenFragment(gif))
+    private fun handleGifClick(position: Int) {
+        findNavController().navigate(GifsFragmentDirections.actionMainFragmentToGifFullscreenFragment(position))
     }
 
     private val viewModel: AppViewModel by activityViewModels()
@@ -69,7 +69,7 @@ class GifsFragment : Fragment() {
             binding.nextPageButton.isEnabled =
                 (viewModel.getOffsetValue() + Constants.QUERY_LIMIT) <= total_count
             binding.pageCounter.text =
-                getString(R.string.page_n, viewModel.getOffsetValue() / Constants.QUERY_LIMIT)
+                getString(R.string.page_n, (viewModel.getOffsetValue() / Constants.QUERY_LIMIT) + 1, (pagination.total_count / Constants.QUERY_LIMIT) + 1 )
         }
     }
 

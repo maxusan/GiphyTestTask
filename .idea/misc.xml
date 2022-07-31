@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/drawable/ic_previous_page.xml" value="0.177" />
         <entry key="app/src/main/res/layout/fragment_gif_fullscreen.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/layout/fragment_gifs.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/list_item_gif_fullscreen.xml" value="0.18" />
         <entry key="app/src/main/res/layout/list_item_grid_gif.xml" value="0.16822916666666668" />
       </map>
     </option>

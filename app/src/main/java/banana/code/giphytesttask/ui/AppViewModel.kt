@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import banana.code.giphytesttask.core.data.response.Pagination
 import banana.code.giphytesttask.core.db.dao.GifDao
 import banana.code.giphytesttask.core.model.Gif
-import banana.code.giphytesttask.core.model.RetrofitResponse
+import banana.code.giphytesttask.core.remote.RetrofitResponse
 import banana.code.giphytesttask.core.repository.GifRepository
 import banana.code.giphytesttask.core.utils.Constants
 import banana.code.giphytesttask.ui.main.ListMode

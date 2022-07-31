@@ -6,5 +6,5 @@
     <string name="search">Search</string>
     <string name="previous_page">Previous page</string>
     <string name="next_page">Next page</string>
-    <string name="page_n">Page: %d</string>
+    <string name="page_n">Page: %d/%d</string>
 </resources>

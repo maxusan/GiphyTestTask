@@ -7,12 +7,14 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import banana.code.giphytesttask.core.model.Gif
 import com.bumptech.glide.Glide
+import com.bumptech.glide.signature.ObjectKey
 
 @BindingAdapter("setGifImage")
 fun ImageView.setGifImage(gif: Gif){
     Glide.with(this)
         .asGif()
         .load(gif.link)
+        .signature(ObjectKey(gif.link))
         .into(this)
 }
 

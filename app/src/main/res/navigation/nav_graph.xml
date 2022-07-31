@@ -20,7 +20,7 @@
         android:label="GifFullscreenFragment"
         tools:layout="@layout/fragment_gif_fullscreen">
         <argument
-            android:name="gif"
-            app:argType="banana.code.giphytesttask.core.model.Gif" />
+            android:name="position"
+            app:argType="integer" />
     </fragment>
 </navigation>
